@@ -1,0 +1,594 @@
+:root {
+    --color-primary: #333333;
+    --color-grey-dark: #4E5150;
+    --color-grey: #828282;
+    --color-grey-light: #E0E0E0;
+    --color-grey-lightest: #F2F2F2;
+    --color-accent: #F2994A;
+
+    --input-border: #8b8a8b;
+    --input-focus-h: 245;
+    --input-focus-s: 100%;
+    --input-focus-l: 42%;
+}
+
+/* remove arrow on number input  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal {
+    padding: 1em;
+    width: 300px;
+    border: 0;
+    box-shadow: 0 0 1rem rgb(0 0 0 / .3);
+    border-radius: 12px;
+}
+
+h2 {
+    color: var(--color-primary);
+    text-align: center;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* checkbox */
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+
+    input[type=checkbox] {
+        --active: #F2994A;
+        --active-inner: #fff;
+        --border: var(--color-grey);
+        --border-hover: #F2994A;
+        --background: #fff;
+        --disabled: #f6f8ff;
+        --disabled-inner: #e1e6f9;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        height: 21px;
+        outline: none;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        margin: 0;
+        cursor: pointer;
+        border: 1px solid var(--bc, var(--border));
+        background: var(--b, var(--background));
+        transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+    }
+
+    .checkbox {
+        margin-top: 1.5rem;
+    }
+
+    input[type=checkbox]:after {
+        content: "";
+        display: block;
+        left: 0;
+        top: 0;
+        position: absolute;
+        transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+    }
+
+    input[type=checkbox]:checked {
+        --b: var(--active);
+        --bc: var(--active);
+        --d-o: 0.3s;
+        --d-t: 0.6s;
+        --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+    }
+
+    input[type=checkbox]:disabled {
+        --b: var(--disabled);
+        cursor: not-allowed;
+        opacity: 0.9;
+    }
+
+    input[type=checkbox]:disabled:checked {
+        --b: var(--disabled-inner);
+        --bc: var(--border);
+    }
+
+    input[type=checkbox]:disabled+label {
+        cursor: not-allowed;
+    }
+
+    input[type=checkbox]:hover:not(:checked):not(:disabled) {
+        --bc: var(--border-hover);
+    }
+
+    input[type=checkbox]:not(.switch) {
+        width: 21px;
+    }
+
+    input[type=checkbox]:not(.switch):after {
+        opacity: var(--o, 0);
+    }
+
+    input[type=checkbox]:not(.switch):checked {
+        --o: 1;
+    }
+
+    input[type=checkbox]+label {
+        font-size: 14px;
+        line-height: 21px;
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        margin-left: 4px;
+    }
+
+    input[type=checkbox]:not(.switch) {
+        border-radius: 5px;
+    }
+
+    input[type=checkbox]:not(.switch):after {
+        width: 5px;
+        height: 9px;
+        border: 2px solid var(--active-inner);
+        border-top: 0;
+        border-left: 0;
+        left: 7px;
+        top: 4px;
+        transform: rotate(var(--r, 20deg));
+    }
+
+    input[type=checkbox]:not(.switch):checked {
+        --r: 43deg;
+    }
+
+    input[type=checkbox].switch {
+        width: 38px;
+        border-radius: 11px;
+    }
+
+    input[type=checkbox].switch:after {
+        left: 2px;
+        top: 2px;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        background: var(--ab, var(--border));
+        transform: translateX(var(--x, 0));
+    }
+
+    input[type=checkbox].switch:checked {
+        --ab: var(--active-inner);
+        --x: 17px;
+    }
+
+    input[type=checkbox].switch:disabled:not(:checked):after {
+        opacity: 0.6;
+    }
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    width: min(80%, 130px);
+    border-radius: 12px;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    /* font-family: 'Montserrat', FontAwesome; */
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+button {
+    background-color: var(--color-grey-light);
+    border: none;
+    border-radius: 4px;
+    width: 20px;
+    height: 20px;
+    color: var(--color-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+h1 {
+    margin: 1rem 0;
+    font-size: 24px;
+    color: var(--color-grey-dark);
+}
+
+.container {
+    width: min(90%, 60rem);
+    margin-inline: auto;
+}
+
+.card {
+    width: min(100%, 380px);
+    height: 400px;
+    background-color: var(--color-grey-lightest);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.item-1,
+.item-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.item-info {
+    width: min(100%, 125px);
+    scale: 0.9;
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+}
+
+.item-info p {
+    font-size: 12px;
+    color: var(--color-grey-dark);
+}
+
+.item-info p span:nth-of-type(1) {
+    font-size: 14px;
+    color: var(--color-accent);
+    line-height: 2.5rem;
+}
+
+.item-info p span:nth-of-type(2) {
+    font-size: 10px;
+    text-decoration: line-through;
+    color: var(--color-grey-dark);
+    margin-left: 0.8rem;
+}
+
+.item-info div {
+    height: 51px;
+    width: min(100%, 125px);
+    border-radius: 12px;
+    border: 1px solid var(--color-grey);
+    display: flex;
+    font-size: 18px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.total-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+}
+
+.total-info div {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #bdbdbd;
+    padding: 0.7em;
+}
+
+form {
+    color: var(--color-primary);
+}
+
+label {
+    color: var(--color-grey-dark);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 12px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    font-size: 16px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.5em 0.5em;
+    background-color: #fff;
+    border: 1px solid var(--color-grey);
+    border-radius: 12px;
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', 'Font Awesome 5 Free';
+
+}
+
+input::placeholder {
+    font-size: 14px;
+    white-space: pre;
+}
+
+select {
+    font-size: 16px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.65em 0.5em;
+    background-color: #fff;
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    color: var(--color-grey);
+    display: inline;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+form div p {
+    margin: 3rem 0 1rem 0;
+    font-size: 18px;
+}
+
+.group-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+#postalcode {
+    margin: 0;
+}
+
+#checkbox {
+    font-size: 11px;
+}
+
+.btn-div {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.btn-continue {
+    border-radius: 12px;
+    font-size: 16px;
+    padding: 2em 5.5em;
+    background-color: var(--color-accent);
+    color: white;
+    margin: 1rem 0 4rem 0;
+    margin-inline: auto;
+}
+
+.btn-close {
+    border-radius: 12px;
+    font-size: 16px;
+    padding: 1.5em 4em;
+    background-color: var(--color-accent);
+    color: white;
+    margin-top: 2rem;
+    margin-inline: auto;
+}
+
+footer {
+    color: #BDBDBD;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.big-h1 {
+    display: none;
+}
+
+@media (min-width: 280px) {
+    .item-info {
+        scale: 1;
+    }
+
+    .card {
+        height: 450px;
+    }
+}
+
+@media (min-width: 320px) {
+    .item-info {
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 345px) {
+    .item-info {
+        gap: 1.5rem;
+    }
+
+    .card {
+        height: 500px;
+    }
+
+    #checkbox {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 428px) {
+    form {
+        width: 400px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+        padding: 0.75em 0.75em;
+    }
+
+    select {
+        padding: 0.83em 0.83em;
+
+    }
+
+    input::placeholder {
+        font-size: 16px;
+        white-space: pre;
+    }
+
+    .item-info {
+        width: 150px;
+    }
+
+    .item-info p {
+        font-size: 16px;
+    }
+
+    .item-info p span:nth-of-type(1) {
+        font-size: 16px;
+        color: var(--color-accent);
+        line-height: 2.5rem;
+    }
+
+    .item-info p span:nth-of-type(2) {
+        font-size: 12px;
+        text-decoration: line-through;
+        color: var(--color-grey-dark);
+        margin-left: 0.8rem;
+    }
+
+    .item-info div {
+        height: 51px;
+        width: min(100%, 135px);
+        border-radius: 12px;
+        border: 1px solid var(--color-grey);
+        display: flex;
+        font-size: 18px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .total-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+        font-size: 18px;
+    }
+
+    .btn-continue {
+        margin-inline: 0;
+    }
+}
+
+@media (min-width: 890px) {
+    .container {
+        display: grid;
+        grid-template-areas:
+            'two one'
+    }
+
+    .small-h1 {
+        display: none;
+    }
+
+    .big-h1 {
+        display: block;
+        font-size: 36px;
+        margin-top: 3rem;
+    }
+
+    .card {
+        grid-area: one;
+        justify-self: end;
+        margin-bottom: 11rem;
+    }
+
+    form {
+        grid-area: two;
+    }
+
+    .group-inputs {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    select {
+        width: 193px;
+    }
+
+    #postalcode {
+        width: 190px;
+    }
+}
